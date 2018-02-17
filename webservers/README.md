@@ -41,3 +41,11 @@ server3.py
 
 This server is as in `server2.py`, except that the data to be served resides
 in the file `data.text` in the root of the server.
+
+server4.py
+----------
+
+The request `localhost:8000/data=100` returns a list like
+`[0, 1, 0, 1, 2, 1, ...]` of 100 numbers obtained by repeatedly
+adding random elements of the set {-1,+1} to an initial value
+of zero.
