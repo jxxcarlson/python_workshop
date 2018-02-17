@@ -14,6 +14,7 @@ Send a POST request::
 """
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
 import SocketServer
+import os
 
 class S(BaseHTTPRequestHandler):
     def _set_headers(self):
@@ -21,16 +22,21 @@ class S(BaseHTTPRequestHandler):
         self.send_header('Content-type', 'text/html')
         self.end_headers()
 
+    def get_data(self, fname):
+        if os.path.exists(fname):
+           with open(fname, 'rb') as f:
+               try:
+                  file = open("data.txt", "r")
+                  return file.read()
+               except : # whatever reader errors you care about
+                  return "error: file not found"
+
     def do_GET(self):
-        print self.path
         if self.path == "/data":
-            file = open("data.txt", "r")
-            message = file.read()
-            print "data: " + message + "\n"
+            message = self.get_data("data.txt")
         else:
             message = "I don't understand"
         self._set_headers()
-        # self.wfile.write("<html><body><h1>hi!</h1></body></html>")
         self.wfile.write(message)
 
     def do_HEAD(self):
