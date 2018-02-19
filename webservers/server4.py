@@ -6,7 +6,7 @@ Very simple HTTP server in python.
 Usage::
     ./dummy-web-server.py [<port>]
 Send a GET request::
-    curl http://localhost
+    curl http://localhost:8000/data=10
 Send a HEAD request::
     curl -I http://localhost
 Send a POST request::
@@ -33,13 +33,16 @@ class S(BaseHTTPRequestHandler):
     def _set_headers(self):
         self.send_response(200)
         self.send_header('Content-type', 'text/html')
+        self.send_header('Access-Control-Allow-Origin', '*')
         self.end_headers()
 
     def do_GET(self):
+        print self.path
         if self.path.find("/data=") == 0:
             [prefix,arg] = self.path.split("=")
             print "arg = " + arg
             message = generate(int(arg), 0)
+            print message
         else:
             message = "I don't understand"
         self._set_headers()
