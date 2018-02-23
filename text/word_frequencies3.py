@@ -1,20 +1,10 @@
-# File: word_frequencies2.py
+# File: word_frequencies3.py
 # Usage:  1) python word_frequencies2.py a filename  --- sort entries alphabetically
 #         2) python word_frequencies2.py f filename  --- sort entries by frequency
 
 import sys
+import frequency_table as FT
 
-def add_word(dictionary, word):
-    if word in dictionary:
-        dictionary[word] = dictionary[word] + 1
-    else:
-        dictionary[word] = 1
-
-def frequency_table(words):
-    frequencies = dict()
-    for word in words:
-        add_word(frequencies, word)
-    return frequencies
 
 def get_data(filename):
   f = open(filename, "r")
@@ -22,29 +12,34 @@ def get_data(filename):
   f.close()
   return data
 
-
 def run(args):
-    data = get_data(args[2])
+    data = get_data(args[2]).lower()
+
     lines = data.split("\n")
     string = " ".join(lines)
-    words = string.split(" ")
+    words_ = string.split(" ")
+    words = list(filter(lambda x: x != '', words_))
 
-    frequencies = frequency_table(words).items()
+    frequencies = FT.frequency_table(words).items()
 
     if sys.argv[1] == 'a':
-      frequencies.sort()
+      frequencies.sort(key=(lambda x: x[0]))
     else:
       frequencies.sort(key=(lambda x: -x[1]))
 
     print [len(lines), len(words), len(data)]
-    print ""
     for item in frequencies:
       print item
 
-print sys.argv
+def print_message():
+    print "Usage: python word_freq a filename    # or"
+    print "       python word_freq f filename    #"
+    print ""
+    print "  First alternative for alphabetically sorted table"
+    print "  Second alternative for table sorted by frequency"
+
 
 if len(sys.argv) == 3:
     run(sys.argv)
 else:
-    print "Usage: python word_freq a filename    # for alphabetically sorted frequency table"
-    print "       python word_freq f filename    # for a table sorte by frequency"
+    print_message()    

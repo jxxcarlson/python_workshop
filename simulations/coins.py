@@ -7,8 +7,11 @@ def heads_or_tails():
     else:
         return "T"
 
-def run(n):
+def run (n):
   output = ""
   for k in range(0,n):
     output = output + heads_or_tails()
   return output
+
+
+print run(20)
