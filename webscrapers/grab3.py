@@ -11,12 +11,12 @@ def filter_with_key(items, key):
 
 def run():
 
-  text = grab_page(sys.argv[2])
+  text = grab_page("http://" + sys.argv[2])
   lines = text.split("\n")
   # lines = list(map((lambda x: x.lower()), text.split("\n")))
   lines2 = filter_with_key(lines, sys.argv[1])
   for line in lines2:
-      print line
+      print line.strip()
       print ""
   print ""
   print [len(lines), len(lines2)]

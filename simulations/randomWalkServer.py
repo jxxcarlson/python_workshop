@@ -19,7 +19,8 @@ To test:
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
 import SocketServer
 from sys import argv
-from reply import reply
+# from randomWalkReply import reply
+from gamblersRuinReply import reply
 
 class S(BaseHTTPRequestHandler):
     def _set_headers(self):

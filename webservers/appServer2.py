@@ -19,7 +19,7 @@ To test:
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
 import SocketServer
 from sys import argv
-from finance
+from finance import reply
 
 class S(BaseHTTPRequestHandler):
     def _set_headers(self):
@@ -29,7 +29,7 @@ class S(BaseHTTPRequestHandler):
 
     def do_GET(self):
         self._set_headers()
-        self.wfile.write(finance.reply(self.path))
+        self.wfile.write(reply(self.path))
 
 def run(server_class=HTTPServer, handler_class=S, port=80):
     server_address = ('', port)

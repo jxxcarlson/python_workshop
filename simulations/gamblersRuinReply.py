@@ -1,4 +1,6 @@
-from generate import generate
+# File: gambersRuinReply
+
+from gamblersRuin import generate
 
 def parse(str):
     parts = str.lstrip("/").split("&")
@@ -6,9 +8,9 @@ def parse(str):
 
 def reply(request):
     arg = parse(request)
-    if 'n' in arg:
-      n = int(arg['n'])
-      data =  generate(0,n)
+    if 'stake' in arg:
+      stake = int(arg['stake'])
+      data =  generate(stake,5000)
       return str(data)
     else:
       return []

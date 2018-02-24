@@ -2,15 +2,12 @@
 # is any news about Slobodia
 #
 # Example:
-# $ python news.py Slobodia
+# $ python news.py nytimes.com Slobodia
 
 import urllib2, sys
 
-source = "http://nytimes.com"
+source = "http://" + sys.argv[1]
 response = urllib2.urlopen(source)
 html = response.read()
 
-if html.find(sys.argv[1]) >=0:
-  print "There is news about " + sys.argv[1] + " today"
-else:
-  print "No news about " + sys.argv[1] + " today"
+print html.count(sys.argv[2])
