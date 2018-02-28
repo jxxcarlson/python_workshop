@@ -13,27 +13,34 @@
 
 from compose import compose
 
-
 def get_data(file_name):
+    str = read_file(file_name)
+    transform = compose(clean, parse)
+    return transform(str)
 
+def read_file(file_name):
     file = open(file_name)
     data = file.read()
     file.close()
+    return data
 
-    transform = compose(strip, remove_bad_data, to_twoList, remove_comments, string_to_lines)
+def parse(str):
+    return compose(split(","), remove_comments, string_to_lines)(str)
 
-    return transform(data)
-
-
-
-def remove_comments(data):
-    return [x for x in data if x.find("#") != 0]
+def clean(data):
+    return compose(strip, remove_bad_data)(data)
 
 def string_to_lines(data):
     return data.split("\n")
 
-def to_twoList(data):
-    return map(lambda x: x.split(","), data)
+def remove_comments(data):
+    return [x for x in data if x.find("#") != 0]
+
+def splitter(separator):
+    return lambda x: x.split(separator)
+
+def split(separator):
+    return lambda data: map(splitter(separator), data)
 
 def remove_bad_data(data):
     return [x for x in data if len(x) == 2]

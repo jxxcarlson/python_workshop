@@ -2,10 +2,10 @@ from matplotlib import pyplot as plt
 import sys
 from get_data import *
 
-dataList = get_data(sys.argv[1])
+data = get_data(sys.argv[1])
 
-years = first(dataList)
-anomalies = to_float(second(dataList))
+years = first(data)
+anomalies = to_float(second(data))
 
 window = 10
 years = drop_window(years, window)

@@ -4,7 +4,10 @@
 
 import sys
 import frequency_table as FT
+from entropy import entropy
+from round_off import round_off
 import re
+
 
 def get_data(filename):
   f = open(filename, "r")
@@ -12,8 +15,12 @@ def get_data(filename):
   f.close()
   return data
 
-def run(args):
-    data = get_data(args[2]).lower()
+
+
+
+
+def run(filename):
+    data = get_data(filename).lower()
     data = re.sub(r'[!?.:;,-]', '', data)
 
     lines = data.split("\n")
@@ -24,30 +31,19 @@ def run(args):
     frequencies = FT.frequency_table(words)
     frequency_items = frequencies.items()
 
-    if sys.argv[1] == 'a':
-      frequency_items.sort(key=(lambda x: x[0]))
-    else:
-      frequency_items.sort(key=(lambda x:   x[1]))
+    entropy_of_text = entropy(frequencies)
 
-
-    for item in frequency_items:
-      print item
-
-    print "--------------"
     print 'lines:   ' + str(len(lines))
     print 'words:   ' + str(len(words))
     print 'chars:   ' + str(len(data))
+    print "entropy: " + str(round_off(entropy_of_text,2))
 
 
 def print_message():
-    print "Usage: python word_freq a filename    # or"
-    print "       python word_freq f filename    #"
-    print ""
-    print "  First alternative for alphabetically sorted table"
-    print "  Second alternative for table sorted by frequency"
+    print "Usage: python text_entropy.py  filename"
 
 
-if len(sys.argv) == 3:
-    run(sys.argv)
+if len(sys.argv) == 2:
+    run(sys.argv[1])
 else:
     print_message()
