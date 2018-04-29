@@ -1,3 +1,4 @@
 *.pyc
 **/*.pyc
 **/elm-stuff/
+.ipynb_checkpoints/

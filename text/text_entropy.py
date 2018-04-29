@@ -16,9 +16,6 @@ def get_data(filename):
   return data
 
 
-
-
-
 def run(filename):
     data = get_data(filename).lower()
     data = re.sub(r'[!?.:;,-]', '', data)
