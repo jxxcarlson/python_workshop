@@ -1,3 +1,5 @@
+# Little statistics package
+
 import math
 
 def mean(data):
