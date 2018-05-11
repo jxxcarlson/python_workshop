@@ -10,5 +10,5 @@ anomalies = to_float(second(data))
 plt.plot(years, anomalies, color='red', marker='', linestyle='solid')
 plt.title("Temperature anomaly")
 plt.ylabel("Degrees C")
-
+plt.savefig("anomaly.png")
 plt.show()

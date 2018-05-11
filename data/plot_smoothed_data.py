@@ -17,5 +17,5 @@ plt.plot(years, anomalies1, color='red', linestyle='solid')
 plt.plot(years, anomalies2, color='blue', linestyle='solid')
 plt.title("Temperature anomaly")
 plt.ylabel("Degrees C")
-
+plt.savefig("anomaly_smoothed.png")
 plt.show()

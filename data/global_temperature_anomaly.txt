@@ -1,9 +1,9 @@
+# Source: https://www.climate.gov/news-features/understanding-climate/climate-change-global-temperature
+# Data source: https://www.ncdc.noaa.gov/cag/global/time-series/globe/land_ocean/ytd/12/1880-2016.csv
 # Global Land and Ocean Temperature Anomalies, January-December
 # Units: Degrees Celsius
 # Base Period: 1901-2000
 # Missing: -999
-# Source: https://www.climate.gov/news-features/understanding-climate/climate-change-global-temperature
-# Data source: https://www.ncdc.noaa.gov/cag/global/time-series/globe/land_ocean/ytd/12/1880-2016.csv
 # Year,Value
 1880,-0.12
 1881,-0.07
