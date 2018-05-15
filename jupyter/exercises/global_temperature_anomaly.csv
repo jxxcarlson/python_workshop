@@ -4,7 +4,7 @@
 # Units: Degrees Celsius
 # Base Period: 1901-2000
 # Missing: -999
-Year,Value
+Year,Temp
 1880,-0.12
 1881,-0.07
 1882,-0.07
