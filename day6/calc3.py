@@ -1,15 +1,21 @@
 import sys
 
-commandDict = {
-  "test": lambda x: test(x),
-  "add": lambda x: add(x)
- }
+
 
 def test(args):
     print args
 
 def add(args):
     print float(args[0]) + float(args[1])
+
+def mul(args):
+    print float(args[0]) * float(args[1])
+
+commandDict = {
+  "test": lambda x: test(x),
+  "add": lambda x: add(x),
+  "mul": lambda x: mul(x)
+ }
 
 def run():
      sys.argv.pop(0)
